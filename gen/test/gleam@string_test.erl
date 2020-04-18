@@ -106,6 +106,10 @@ drop_left_test() ->
     ),
     gleam@should:equal(gleam@string:drop_left(<<""/utf8>>, 4), <<""/utf8>>),
     gleam@should:equal(
+        gleam@string:drop_left(<<"The Lone Gunmen"/utf8>>, 0),
+        <<"The Lone Gunmen"/utf8>>
+    ),
+    gleam@should:equal(
         gleam@string:drop_left(<<"Test"/utf8>>, -20),
         <<"Test"/utf8>>
     ).
@@ -116,6 +120,10 @@ drop_right_test() ->
         <<"Cigarette Smoking M"/utf8>>
     ),
     gleam@should:equal(gleam@string:drop_right(<<""/utf8>>, 4), <<""/utf8>>),
+    gleam@should:equal(
+        gleam@string:drop_right(<<"Cigarette Smoking Man"/utf8>>, 0),
+        <<"Cigarette Smoking Man"/utf8>>
+    ),
     gleam@should:equal(
         gleam@string:drop_right(<<"Test"/utf8>>, -20),
         <<"Test"/utf8>>
