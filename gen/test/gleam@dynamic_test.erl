@@ -5,20 +5,20 @@
 
 string_test() ->
     gleam@should:equal(
-        gleam@dynamic:string(gleam@dynamic:from(<<""/utf8>>)),
-        {ok, <<""/utf8>>}
+        gleam@dynamic:string(gleam@dynamic:from(<<"">>)),
+        {ok, <<"">>}
     ),
     gleam@should:equal(
-        gleam@dynamic:string(gleam@dynamic:from(<<"Hello"/utf8>>)),
-        {ok, <<"Hello"/utf8>>}
+        gleam@dynamic:string(gleam@dynamic:from(<<"Hello">>)),
+        {ok, <<"Hello">>}
     ),
     gleam@should:equal(
         gleam@dynamic:string(gleam@dynamic:from(1)),
-        {error, <<"Expected a String, got `1`"/utf8>>}
+        {error, <<"Expected a String, got `1`">>}
     ),
     gleam@should:equal(
         gleam@dynamic:string(gleam@dynamic:from([])),
-        {error, <<"Expected a String, got `[]`"/utf8>>}
+        {error, <<"Expected a String, got `[]`">>}
     ).
 
 int_test() ->
@@ -26,11 +26,11 @@ int_test() ->
     gleam@should:equal(gleam@dynamic:int(gleam@dynamic:from(2)), {ok, 2}),
     gleam@should:equal(
         gleam@dynamic:int(gleam@dynamic:from(1.0)),
-        {error, <<"Expected an Int, got `1.0`"/utf8>>}
+        {error, <<"Expected an Int, got `1.0`">>}
     ),
     gleam@should:equal(
         gleam@dynamic:int(gleam@dynamic:from([])),
-        {error, <<"Expected an Int, got `[]`"/utf8>>}
+        {error, <<"Expected an Int, got `[]`">>}
     ).
 
 float_test() ->
@@ -38,11 +38,11 @@ float_test() ->
     gleam@should:equal(gleam@dynamic:float(gleam@dynamic:from(2.2)), {ok, 2.2}),
     gleam@should:equal(
         gleam@dynamic:float(gleam@dynamic:from(1)),
-        {error, <<"Expected a Float, got `1`"/utf8>>}
+        {error, <<"Expected a Float, got `1`">>}
     ),
     gleam@should:equal(
         gleam@dynamic:float(gleam@dynamic:from([])),
-        {error, <<"Expected a Float, got `[]`"/utf8>>}
+        {error, <<"Expected a Float, got `[]`">>}
     ).
 
 thunk_test() ->
@@ -71,25 +71,25 @@ bool_test() ->
     ),
     gleam@should:equal(
         gleam@dynamic:bool(gleam@dynamic:from(1)),
-        {error, <<"Expected a Bool, got `1`"/utf8>>}
+        {error, <<"Expected a Bool, got `1`">>}
     ),
     gleam@should:equal(
         gleam@dynamic:bool(gleam@dynamic:from([])),
-        {error, <<"Expected a Bool, got `[]`"/utf8>>}
+        {error, <<"Expected a Bool, got `[]`">>}
     ).
 
 atom_test() ->
     gleam@should:equal(
         gleam@dynamic:atom(
-            gleam@dynamic:from(gleam@atom:create_from_string(<<""/utf8>>))
+            gleam@dynamic:from(gleam@atom:create_from_string(<<"">>))
         ),
-        {ok, gleam@atom:create_from_string(<<""/utf8>>)}
+        {ok, gleam@atom:create_from_string(<<"">>)}
     ),
     gleam@should:equal(
         gleam@dynamic:atom(
-            gleam@dynamic:from(gleam@atom:create_from_string(<<"ok"/utf8>>))
+            gleam@dynamic:from(gleam@atom:create_from_string(<<"ok">>))
         ),
-        {ok, gleam@atom:create_from_string(<<"ok"/utf8>>)}
+        {ok, gleam@atom:create_from_string(<<"ok">>)}
     ),
     gleam@should:be_error(gleam@dynamic:atom(gleam@dynamic:from(1))),
     gleam@should:be_error(gleam@dynamic:atom(gleam@dynamic:from([]))).
@@ -127,7 +127,7 @@ list_test() ->
     ),
     gleam@should:be_error(
         gleam@dynamic:list(
-            gleam@dynamic:from([<<""/utf8>>]),
+            gleam@dynamic:from([<<"">>]),
             fun gleam@dynamic:int/1
         )
     ),
@@ -135,15 +135,15 @@ list_test() ->
         gleam@dynamic:list(
             gleam@dynamic:from(
                 [gleam@dynamic:from(1),
-                 gleam@dynamic:from(<<"not an int"/utf8>>)]
+                 gleam@dynamic:from(<<"not an int">>)]
             ),
             fun gleam@dynamic:int/1
         )
     ).
 
 field_test() ->
-    {ok, OkAtom} = gleam@atom:from_string(<<"ok"/utf8>>),
-    {ok, ErrorAtom} = gleam@atom:from_string(<<"error"/utf8>>),
+    {ok, OkAtom} = gleam@atom:from_string(<<"ok">>),
+    {ok, ErrorAtom} = gleam@atom:from_string(<<"error">>),
     gleam@should:equal(
         gleam@dynamic:field(
             gleam@dynamic:from(gleam@map:insert(gleam@map:new(), OkAtom, 1)),
@@ -171,7 +171,7 @@ field_test() ->
     gleam@should:be_error(gleam@dynamic:field(gleam@dynamic:from([]), [])).
 
 element_test() ->
-    {ok, OkAtom} = gleam@atom:from_string(<<"ok"/utf8>>),
+    {ok, OkAtom} = gleam@atom:from_string(<<"ok">>),
     OkOneTuple = {OkAtom, 1},
     gleam@should:equal(
         gleam@dynamic:element(gleam@dynamic:from(OkOneTuple), 0),

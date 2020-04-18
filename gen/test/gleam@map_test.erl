@@ -34,15 +34,15 @@ insert_test() ->
     gleam@should:equal(
         gleam@map:insert(
             gleam@map:insert(
-                gleam@map:insert(gleam@map:new(), <<"a"/utf8>>, 0),
-                <<"b"/utf8>>,
+                gleam@map:insert(gleam@map:new(), <<"a">>, 0),
+                <<"b">>,
                 1
             ),
-            <<"c"/utf8>>,
+            <<"c">>,
             2
         ),
         gleam@map:from_list(
-            [{<<"a"/utf8>>, 0}, {<<"b"/utf8>>, 1}, {<<"c"/utf8>>, 2}]
+            [{<<"a">>, 0}, {<<"b">>, 1}, {<<"c">>, 2}]
         )
     ).
 
@@ -59,17 +59,17 @@ keys_test() ->
     gleam@should:equal(
         gleam@map:keys(
             gleam@map:from_list(
-                [{<<"a"/utf8>>, 0}, {<<"b"/utf8>>, 1}, {<<"c"/utf8>>, 2}]
+                [{<<"a">>, 0}, {<<"b">>, 1}, {<<"c">>, 2}]
             )
         ),
-        [<<"a"/utf8>>, <<"b"/utf8>>, <<"c"/utf8>>]
+        [<<"a">>, <<"b">>, <<"c">>]
     ).
 
 values_test() ->
     gleam@should:equal(
         gleam@map:values(
             gleam@map:from_list(
-                [{<<"a"/utf8>>, 0}, {<<"b"/utf8>>, 1}, {<<"c"/utf8>>, 2}]
+                [{<<"a">>, 0}, {<<"b">>, 1}, {<<"c">>, 2}]
             )
         ),
         [0, 1, 2]
@@ -79,47 +79,47 @@ take_test() ->
     gleam@should:equal(
         gleam@map:take(
             gleam@map:from_list(
-                [{<<"a"/utf8>>, 0}, {<<"b"/utf8>>, 1}, {<<"c"/utf8>>, 2}]
+                [{<<"a">>, 0}, {<<"b">>, 1}, {<<"c">>, 2}]
             ),
-            [<<"a"/utf8>>, <<"b"/utf8>>, <<"d"/utf8>>]
+            [<<"a">>, <<"b">>, <<"d">>]
         ),
-        gleam@map:from_list([{<<"a"/utf8>>, 0}, {<<"b"/utf8>>, 1}])
+        gleam@map:from_list([{<<"a">>, 0}, {<<"b">>, 1}])
     ).
 
 drop_test() ->
     gleam@should:equal(
         gleam@map:drop(
             gleam@map:from_list(
-                [{<<"a"/utf8>>, 0}, {<<"b"/utf8>>, 1}, {<<"c"/utf8>>, 2}]
+                [{<<"a">>, 0}, {<<"b">>, 1}, {<<"c">>, 2}]
             ),
-            [<<"a"/utf8>>, <<"b"/utf8>>, <<"d"/utf8>>]
+            [<<"a">>, <<"b">>, <<"d">>]
         ),
-        gleam@map:from_list([{<<"c"/utf8>>, 2}])
+        gleam@map:from_list([{<<"c">>, 2}])
     ).
 
 merge_test() ->
     A = gleam@map:from_list(
-        [{<<"a"/utf8>>, 2}, {<<"c"/utf8>>, 4}, {<<"d"/utf8>>, 3}]
+        [{<<"a">>, 2}, {<<"c">>, 4}, {<<"d">>, 3}]
     ),
     B = gleam@map:from_list(
-        [{<<"a"/utf8>>, 0}, {<<"b"/utf8>>, 1}, {<<"c"/utf8>>, 2}]
+        [{<<"a">>, 0}, {<<"b">>, 1}, {<<"c">>, 2}]
     ),
     gleam@should:equal(
         gleam@map:merge(A, B),
         gleam@map:from_list(
-            [{<<"a"/utf8>>, 0},
-             {<<"b"/utf8>>, 1},
-             {<<"c"/utf8>>, 2},
-             {<<"d"/utf8>>, 3}]
+            [{<<"a">>, 0},
+             {<<"b">>, 1},
+             {<<"c">>, 2},
+             {<<"d">>, 3}]
         )
     ),
     gleam@should:equal(
         gleam@map:merge(B, A),
         gleam@map:from_list(
-            [{<<"a"/utf8>>, 2},
-             {<<"b"/utf8>>, 1},
-             {<<"c"/utf8>>, 4},
-             {<<"d"/utf8>>, 3}]
+            [{<<"a">>, 2},
+             {<<"b">>, 1},
+             {<<"c">>, 4},
+             {<<"d">>, 3}]
         )
     ).
 
@@ -128,18 +128,18 @@ delete_test() ->
         gleam@map:delete(
             gleam@map:delete(
                 gleam@map:from_list(
-                    [{<<"a"/utf8>>, 0}, {<<"b"/utf8>>, 1}, {<<"c"/utf8>>, 2}]
+                    [{<<"a">>, 0}, {<<"b">>, 1}, {<<"c">>, 2}]
                 ),
-                <<"a"/utf8>>
+                <<"a">>
             ),
-            <<"d"/utf8>>
+            <<"d">>
         ),
-        gleam@map:from_list([{<<"b"/utf8>>, 1}, {<<"c"/utf8>>, 2}])
+        gleam@map:from_list([{<<"b">>, 1}, {<<"c">>, 2}])
     ).
 
 update_test() ->
     Dict = gleam@map:from_list(
-        [{<<"a"/utf8>>, 0}, {<<"b"/utf8>>, 1}, {<<"c"/utf8>>, 2}]
+        [{<<"a">>, 0}, {<<"b">>, 1}, {<<"c">>, 2}]
     ),
     IncOrZero = fun(X) -> case X of
             {ok, I} ->
@@ -149,39 +149,39 @@ update_test() ->
                 0
         end end,
     gleam@should:equal(
-        gleam@map:update(Dict, <<"a"/utf8>>, IncOrZero),
+        gleam@map:update(Dict, <<"a">>, IncOrZero),
         gleam@map:from_list(
-            [{<<"a"/utf8>>, 1}, {<<"b"/utf8>>, 1}, {<<"c"/utf8>>, 2}]
+            [{<<"a">>, 1}, {<<"b">>, 1}, {<<"c">>, 2}]
         )
     ),
     gleam@should:equal(
-        gleam@map:update(Dict, <<"b"/utf8>>, IncOrZero),
+        gleam@map:update(Dict, <<"b">>, IncOrZero),
         gleam@map:from_list(
-            [{<<"a"/utf8>>, 0}, {<<"b"/utf8>>, 2}, {<<"c"/utf8>>, 2}]
+            [{<<"a">>, 0}, {<<"b">>, 2}, {<<"c">>, 2}]
         )
     ),
     gleam@should:equal(
-        gleam@map:update(Dict, <<"z"/utf8>>, IncOrZero),
+        gleam@map:update(Dict, <<"z">>, IncOrZero),
         gleam@map:from_list(
-            [{<<"a"/utf8>>, 0},
-             {<<"b"/utf8>>, 1},
-             {<<"c"/utf8>>, 2},
-             {<<"z"/utf8>>, 0}]
+            [{<<"a">>, 0},
+             {<<"b">>, 1},
+             {<<"c">>, 2},
+             {<<"z">>, 0}]
         )
     ).
 
 fold_test() ->
     Dict = gleam@map:from_list(
-        [{<<"a"/utf8>>, 0},
-         {<<"b"/utf8>>, 1},
-         {<<"c"/utf8>>, 2},
-         {<<"d"/utf8>>, 3}]
+        [{<<"a">>, 0},
+         {<<"b">>, 1},
+         {<<"c">>, 2},
+         {<<"d">>, 3}]
     ),
     Add = fun(_, V, Acc) -> V + Acc end,
     gleam@should:equal(gleam@map:fold(Dict, 0, Add), 6),
     Concat = fun(K, _, Acc1) -> gleam@string:append(Acc1, K) end,
     gleam@should:equal(
-        gleam@map:fold(Dict, <<""/utf8>>, Concat),
-        <<"abcd"/utf8>>
+        gleam@map:fold(Dict, <<"">>, Concat),
+        <<"abcd">>
     ),
     gleam@should:equal(gleam@map:fold(gleam@map:from_list([]), 0, Add), 0).

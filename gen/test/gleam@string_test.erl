@@ -4,119 +4,119 @@
 -export([length_test/0, lowercase_test/0, uppercase_test/0, reverse_test/0, split_test/0, replace_test/0, append_test/0, compare_test/0, contains_test/0, concat_test/0, repeat_test/0, join_test/0, drop_left_test/0, drop_right_test/0]).
 
 length_test() ->
-    gleam@should:equal(gleam@string:length(<<"ß↑e̊"/utf8>>), 3),
-    gleam@should:equal(gleam@string:length(<<"Gleam"/utf8>>), 5),
-    gleam@should:equal(gleam@string:length(<<""/utf8>>), 0).
+    gleam@should:equal(gleam@string:length(<<"ß↑e̊">>), 3),
+    gleam@should:equal(gleam@string:length(<<"Gleam">>), 5),
+    gleam@should:equal(gleam@string:length(<<"">>), 0).
 
 lowercase_test() ->
     gleam@should:equal(
-        gleam@string:lowercase(<<"Gleam"/utf8>>),
-        <<"gleam"/utf8>>
+        gleam@string:lowercase(<<"Gleam">>),
+        <<"gleam">>
     ).
 
 uppercase_test() ->
     gleam@should:equal(
-        gleam@string:uppercase(<<"Gleam"/utf8>>),
-        <<"GLEAM"/utf8>>
+        gleam@string:uppercase(<<"Gleam">>),
+        <<"GLEAM">>
     ).
 
 reverse_test() ->
     gleam@should:equal(
-        gleam@string:reverse(<<"Gleam"/utf8>>),
-        <<"maelG"/utf8>>
+        gleam@string:reverse(<<"Gleam">>),
+        <<"maelG">>
     ).
 
 split_test() ->
     gleam@should:equal(
-        gleam@string:split(<<"Gleam,Erlang,Elixir"/utf8>>, <<","/utf8>>),
-        [<<"Gleam"/utf8>>, <<"Erlang"/utf8>>, <<"Elixir"/utf8>>]
+        gleam@string:split(<<"Gleam,Erlang,Elixir">>, <<",">>),
+        [<<"Gleam">>, <<"Erlang">>, <<"Elixir">>]
     ),
     gleam@should:equal(
-        gleam@string:split(<<"Gleam, Erlang,Elixir"/utf8>>, <<", "/utf8>>),
-        [<<"Gleam"/utf8>>, <<"Erlang,Elixir"/utf8>>]
+        gleam@string:split(<<"Gleam, Erlang,Elixir">>, <<", ">>),
+        [<<"Gleam">>, <<"Erlang,Elixir">>]
     ).
 
 replace_test() ->
     gleam@should:equal(
         gleam@string:replace(
-            <<"Gleam,Erlang,Elixir"/utf8>>,
-            <<","/utf8>>,
-            <<"++"/utf8>>
+            <<"Gleam,Erlang,Elixir">>,
+            <<",">>,
+            <<"++">>
         ),
-        <<"Gleam++Erlang++Elixir"/utf8>>
+        <<"Gleam++Erlang++Elixir">>
     ).
 
 append_test() ->
     gleam@should:equal(
-        gleam@string:append(<<"Test"/utf8>>, <<" Me"/utf8>>),
-        <<"Test Me"/utf8>>
+        gleam@string:append(<<"Test">>, <<" Me">>),
+        <<"Test Me">>
     ).
 
 compare_test() ->
-    gleam@should:equal(gleam@string:compare(<<""/utf8>>, <<""/utf8>>), eq),
-    gleam@should:equal(gleam@string:compare(<<"a"/utf8>>, <<""/utf8>>), gt),
-    gleam@should:equal(gleam@string:compare(<<"a"/utf8>>, <<"A"/utf8>>), gt),
-    gleam@should:equal(gleam@string:compare(<<"A"/utf8>>, <<"B"/utf8>>), lt),
-    gleam@should:equal(gleam@string:compare(<<"t"/utf8>>, <<"ABC"/utf8>>), gt).
+    gleam@should:equal(gleam@string:compare(<<"">>, <<"">>), eq),
+    gleam@should:equal(gleam@string:compare(<<"a">>, <<"">>), gt),
+    gleam@should:equal(gleam@string:compare(<<"a">>, <<"A">>), gt),
+    gleam@should:equal(gleam@string:compare(<<"A">>, <<"B">>), lt),
+    gleam@should:equal(gleam@string:compare(<<"t">>, <<"ABC">>), gt).
 
 contains_test() ->
     gleam@should:equal(
-        gleam@string:contains(<<"gleam"/utf8>>, <<"ea"/utf8>>),
+        gleam@string:contains(<<"gleam">>, <<"ea">>),
         true
     ),
     gleam@should:equal(
-        gleam@string:contains(<<"gleam"/utf8>>, <<"x"/utf8>>),
+        gleam@string:contains(<<"gleam">>, <<"x">>),
         false
     ),
     gleam@should:equal(
-        gleam@string:contains(<<"bellwether"/utf8>>, <<"bell"/utf8>>),
+        gleam@string:contains(<<"bellwether">>, <<"bell">>),
         true
     ).
 
 concat_test() ->
     gleam@should:equal(
         gleam@string:concat(
-            [<<"Hello"/utf8>>, <<", "/utf8>>, <<"world!"/utf8>>]
+            [<<"Hello">>, <<", ">>, <<"world!">>]
         ),
-        <<"Hello, world!"/utf8>>
+        <<"Hello, world!">>
     ).
 
 repeat_test() ->
     gleam@should:equal(
-        gleam@string:repeat(<<"hi"/utf8>>, 3),
-        <<"hihihi"/utf8>>
+        gleam@string:repeat(<<"hi">>, 3),
+        <<"hihihi">>
     ),
-    gleam@should:equal(gleam@string:repeat(<<"hi"/utf8>>, 0), <<""/utf8>>),
-    gleam@should:equal(gleam@string:repeat(<<"hi"/utf8>>, -1), <<""/utf8>>).
+    gleam@should:equal(gleam@string:repeat(<<"hi">>, 0), <<"">>),
+    gleam@should:equal(gleam@string:repeat(<<"hi">>, -1), <<"">>).
 
 join_test() ->
     gleam@should:equal(
-        gleam@string:join([<<"Hello"/utf8>>, <<"world!"/utf8>>], <<", "/utf8>>),
-        <<"Hello, world!"/utf8>>
+        gleam@string:join([<<"Hello">>, <<"world!">>], <<", ">>),
+        <<"Hello, world!">>
     ),
     gleam@should:equal(
-        gleam@string:join([<<"Hello"/utf8>>, <<"world!"/utf8>>], <<"-"/utf8>>),
-        <<"Hello-world!"/utf8>>
+        gleam@string:join([<<"Hello">>, <<"world!">>], <<"-">>),
+        <<"Hello-world!">>
     ).
 
 drop_left_test() ->
     gleam@should:equal(
-        gleam@string:drop_left(<<"The Lone Gunmen"/utf8>>, 2),
-        <<"e Lone Gunmen"/utf8>>
+        gleam@string:drop_left(<<"The Lone Gunmen">>, 2),
+        <<"e Lone Gunmen">>
     ),
-    gleam@should:equal(gleam@string:drop_left(<<""/utf8>>, 4), <<""/utf8>>),
+    gleam@should:equal(gleam@string:drop_left(<<"">>, 4), <<"">>),
     gleam@should:equal(
-        gleam@string:drop_left(<<"Test"/utf8>>, -20),
-        <<"Test"/utf8>>
+        gleam@string:drop_left(<<"Test">>, -20),
+        <<"Test">>
     ).
 
 drop_right_test() ->
     gleam@should:equal(
-        gleam@string:drop_right(<<"Cigarette Smoking Man"/utf8>>, 2),
-        <<"Cigarette Smoking M"/utf8>>
+        gleam@string:drop_right(<<"Cigarette Smoking Man">>, 2),
+        <<"Cigarette Smoking M">>
     ),
-    gleam@should:equal(gleam@string:drop_right(<<""/utf8>>, 4), <<""/utf8>>),
+    gleam@should:equal(gleam@string:drop_right(<<"">>, 4), <<"">>),
     gleam@should:equal(
-        gleam@string:drop_right(<<"Test"/utf8>>, -20),
-        <<"Test"/utf8>>
+        gleam@string:drop_right(<<"Test">>, -20),
+        <<"Test">>
     ).
