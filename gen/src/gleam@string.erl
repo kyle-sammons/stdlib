@@ -1,10 +1,10 @@
 -module(gleam@string).
 -compile(no_auto_import).
 
--export([is_empty/1, length/1, reverse/1, replace/3, lowercase/1, uppercase/1, compare/2, drop_left/2, drop_right/2, contains/2, split/2, append/2, concat/1, repeat/2, join/2]).
+-export([is_empty/1, length/1, reverse/1, replace/3, lowercase/1, uppercase/1, compare/2, contains/2, split/2, append/2, concat/1, repeat/2, join/2]).
 
 is_empty(Str) ->
-    Str =:= <<""/utf8>>.
+    Str =:= <<"">>.
 
 length(A) ->
     string:length(A).
@@ -25,30 +25,6 @@ uppercase(A) ->
 
 compare(A, B) ->
     gleam_stdlib:compare_strings(A, B).
-
-erl_drop_left(A, B) ->
-    string:slice(A, B).
-
-drop_left(String, NumGraphemes) ->
-    case NumGraphemes > 0 of
-        true ->
-            erl_drop_left(String, NumGraphemes);
-
-        false ->
-            String
-    end.
-
-erl_drop_right(A, B) ->
-    gleam_stdlib:drop_right(A, B).
-
-drop_right(String, NumGraphemes) ->
-    case NumGraphemes > 0 of
-        true ->
-            erl_drop_right(String, NumGraphemes);
-
-        false ->
-            String
-    end.
 
 erl_contains(A, B) ->
     gleam_stdlib:string_contains(A, B).

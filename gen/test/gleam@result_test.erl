@@ -28,10 +28,7 @@ map_error_test() ->
         {ok, 1}
     ),
     gleam@should:equal(
-        gleam@result:map_error(
-            {error, 1},
-            fun(X1) -> {<<"ok">>, X1 + 1} end
-        ),
+        gleam@result:map_error({error, 1}, fun(X1) -> {<<"ok">>, X1 + 1} end),
         {error, {<<"ok">>, 2}}
     ).
 

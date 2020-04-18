@@ -6,10 +6,7 @@
 parse_test() ->
     gleam@should:equal(gleam@float:parse(<<"1.23">>), {ok, 1.23}),
     gleam@should:equal(gleam@float:parse(<<"5.0">>), {ok, 5.0}),
-    gleam@should:equal(
-        gleam@float:parse(<<"0.123456789">>),
-        {ok, 0.123456789}
-    ),
+    gleam@should:equal(gleam@float:parse(<<"0.123456789">>), {ok, 0.123456789}),
     gleam@should:equal(gleam@float:parse(<<"">>), {error, nil}),
     gleam@should:equal(gleam@float:parse(<<"what">>), {error, nil}),
     gleam@should:equal(gleam@float:parse(<<"1">>), {error, nil}).

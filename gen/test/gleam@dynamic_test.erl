@@ -134,8 +134,7 @@ list_test() ->
     gleam@should:be_error(
         gleam@dynamic:list(
             gleam@dynamic:from(
-                [gleam@dynamic:from(1),
-                 gleam@dynamic:from(<<"not an int">>)]
+                [gleam@dynamic:from(1), gleam@dynamic:from(<<"not an int">>)]
             ),
             fun gleam@dynamic:int/1
         )

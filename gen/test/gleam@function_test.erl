@@ -32,10 +32,7 @@ flip_test() ->
         )
     end,
     FlippedFun = gleam@function:flip(Fun),
-    gleam@should:equal(
-        Fun(<<"Bob">>, 1),
-        <<"String: 'Bob', Int: '1'">>
-    ),
+    gleam@should:equal(Fun(<<"Bob">>, 1), <<"String: 'Bob', Int: '1'">>),
     gleam@should:equal(
         FlippedFun(2, <<"Alice">>),
         <<"String: 'Alice', Int: '2'">>

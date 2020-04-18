@@ -7,9 +7,7 @@ from_string_test() ->
     gleam@should:be_ok(gleam@atom:from_string(<<"ok">>)),
     gleam@should:be_ok(gleam@atom:from_string(<<"expect">>)),
     gleam@should:equal(
-        gleam@atom:from_string(
-            <<"this is not an atom we have seen before">>
-        ),
+        gleam@atom:from_string(<<"this is not an atom we have seen before">>),
         {error, atom_not_loaded}
     ).
 

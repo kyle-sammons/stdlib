@@ -20,8 +20,7 @@ iodata_test() ->
                 gleam@iodata:new(<<",">>)
             ),
             gleam@iodata:concat(
-                [gleam@iodata:new(<<" wo">>),
-                 gleam@iodata:new(<<"rld!">>)]
+                [gleam@iodata:new(<<" wo">>), gleam@iodata:new(<<"rld!">>)]
             )
         ),
         gleam@iodata:new(<<"H">>)
@@ -51,19 +50,14 @@ uppercase_test() ->
 
 split_test() ->
     gleam@should:equal(
-        gleam@iodata:split(
-            gleam@iodata:new(<<"Gleam,Erlang,Elixir">>),
-            <<",">>
-        ),
+        gleam@iodata:split(gleam@iodata:new(<<"Gleam,Erlang,Elixir">>), <<",">>),
         [gleam@iodata:new(<<"Gleam">>),
          gleam@iodata:new(<<"Erlang">>),
          gleam@iodata:new(<<"Elixir">>)]
     ),
     gleam@should:equal(
         gleam@iodata:split(
-            gleam@iodata:from_strings(
-                [<<"Gleam, Erl">>, <<"ang,Elixir">>]
-            ),
+            gleam@iodata:from_strings([<<"Gleam, Erl">>, <<"ang,Elixir">>]),
             <<", ">>
         ),
         [gleam@iodata:new(<<"Gleam">>),
@@ -92,12 +86,8 @@ is_equal_test() ->
 
 is_empty_test() ->
     gleam@should:be_true(gleam@iodata:is_empty(gleam@iodata:new(<<"">>))),
-    gleam@should:be_false(
-        gleam@iodata:is_empty(gleam@iodata:new(<<"12">>))
-    ),
+    gleam@should:be_false(gleam@iodata:is_empty(gleam@iodata:new(<<"12">>))),
     gleam@should:be_true(gleam@iodata:is_empty(gleam@iodata:from_strings([]))),
     gleam@should:be_true(
-        gleam@iodata:is_empty(
-            gleam@iodata:from_strings([<<"">>, <<"">>])
-        )
+        gleam@iodata:is_empty(gleam@iodata:from_strings([<<"">>, <<"">>]))
     ).
