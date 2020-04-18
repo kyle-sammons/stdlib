@@ -110,7 +110,6 @@ pub external fn compare(String, String) -> order.Order =
 ///
 // pub fn slice(out_of string: String, from start: Int, end: Int) -> String {}
 
-// TODO
 /// Drop *n* Graphemes from the left side of a
 ///
 /// ## Examples
@@ -118,9 +117,16 @@ pub external fn compare(String, String) -> order.Order =
 /// drop_left(from: "The Lone Gunmen", up_to: 2) == "e Lone Gunmen"
 /// ```
 ///
-// pub fn drop_left(from string: String, up_to num_graphemes: Int) -> String {}
+external fn erl_drop_left(String, Int) -> String =
+  "string" "slice"
 
-// TODO
+pub fn drop_left(from string: String, up_to num_graphemes: Int) -> String {
+  case num_graphemes > 0 {
+    True -> erl_drop_left(string, num_graphemes)
+    False -> string
+  }
+}
+
 /// Drop *n* Graphemes from the right side of a
 ///
 /// ## Examples
@@ -128,7 +134,15 @@ pub external fn compare(String, String) -> order.Order =
 /// drop_right(from: "Cigarette Smoking Man", up_to: 2) == "Cigarette Smoking M"
 /// ```
 ///
-// pub fn drop_right(from string: String, up_to num_graphemes: Int) -> String {}
+external fn erl_drop_right(String, Int) -> String =
+  "gleam_stdlib" "drop_right"
+
+pub fn drop_right(from string: String, up_to num_graphemes: Int) -> String {
+  case num_graphemes > 0 {
+    True -> erl_drop_right(string, num_graphemes)
+    False -> string
+  }
+}
 
 /// ## Check for Substrings
 

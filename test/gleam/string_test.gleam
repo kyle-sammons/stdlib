@@ -115,3 +115,25 @@ pub fn join_test() {
   |> string.join(_, with: "-")
   |> should.equal(_, "Hello-world!")
 }
+
+pub fn drop_left_test() {
+  string.drop_left(from: "The Lone Gunmen", up_to: 2)
+  |> should.equal(_, "e Lone Gunmen")
+
+  string.drop_left(from: "", up_to: 4)
+  |> should.equal(_, "")
+
+  string.drop_left(from: "Test", up_to: -20)
+  |> should.equal("Test")
+}
+
+pub fn drop_right_test() {
+  string.drop_right(from: "Cigarette Smoking Man", up_to: 2)
+  |> should.equal(_, "Cigarette Smoking M")
+
+  string.drop_right(from: "", up_to: 4)
+  |> should.equal(_, "")
+
+  string.drop_right(from: "Test", up_to: -20)
+  |> should.equal("Test")
+}
